@@ -1,15 +1,22 @@
-# Write a program to create a dictionary of Hindi words with values as their English translation.
-# Provide user with an option to look it up!
+# Create an empty dictionary. Allow 4 friends to enter their favorite language as value 
+# and use key as their names. Assume that the names are unique.
 
-words = {
-    "namaste": "Hello",
-    "kaise ho": "How are you",
-    "achchha": "Good",
-    "dhanyavaad": "Thank you",
-    "svaagat": "Welcome",
-    "madad": "Help"
-}
+d = {}
 
-word = input("Enter the word you want to meaning of: ")
+name = input("Enter friends name: ")
+lang = input("Enter language name:")
+d.update({name: lang}) 
 
-print(words[word])
+name = input("Enter friends name: ")
+lang = input("Enter language name:")
+d.update({name: lang})
+
+name = input("Enter friends name: ")
+lang = input("Enter language name:")
+d.update({name: lang})
+
+name = input("Enter friends name: ")
+lang = input("Enter language name:")
+d.update({name: lang})
+
+print(d)
