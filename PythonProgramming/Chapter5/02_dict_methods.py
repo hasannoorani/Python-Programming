@@ -9,7 +9,7 @@ print(car.keys())
 
 print(car.values())
 
-car.update({"name": "John", "skill": "Python"})  # Update the carionary and carionary is mutable
+car.update({"name": "John", "skill": "Python"})  #Updates the dictionary with the specified key-value pairs
 print(car)
 
 print(car.get("name"))
