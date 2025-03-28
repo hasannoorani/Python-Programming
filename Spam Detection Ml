@@ -1,0 +1,46 @@
+import pandas as pd
+import numpy as np
+from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.pipeline import Pipeline
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score, classification_report
+
+# Sample dataset
+data = {
+    'text': [
+        'Win a lottery now!', 'Hello, how are you?', 'Congratulations! You won a prize.',
+        'Get cheap loans instantly', 'Meeting at 5 PM', 'Click this link to claim reward!',
+        'Lunch at my place?', 'Earn money from home easily'
+    ],
+    'label': ['spam', 'ham', 'spam', 'spam', 'ham', 'spam', 'ham', 'spam']
+}
+
+df = pd.DataFrame(data)
+
+# Splitting data
+X_train, X_test, y_train, y_test = train_test_split(df['text'], df['label'], test_size=0.2, random_state=42)
+
+# Building pipeline for text classification
+model = Pipeline([
+    ('vectorizer', CountVectorizer()),
+    ('tfidf', TfidfTransformer()),
+    ('classifier', MultinomialNB())
+])
+
+# Training model
+model.fit(X_train, y_train)
+
+# Predictions
+y_pred = model.predict(X_test)
+
+# Evaluating model
+accuracy = accuracy_score(y_test, y_pred)
+print("Accuracy:", accuracy)
+print("Classification Report:\n", classification_report(y_test, y_pred))
+
+# Testing on new messages
+def predict_spam(message):
+    return model.predict([message])[0]
+
+print("Example Prediction: ", predict_spam("You won a free trip!"))
