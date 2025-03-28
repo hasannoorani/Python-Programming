@@ -6,7 +6,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, classification_report
 
-# Sample dataset
+#Sample dataset
 data = {
     'text': [
         'Win a lottery now!', 'Hello, how are you?', 'Congratulations! You won a prize.',
@@ -18,28 +18,28 @@ data = {
 
 df = pd.DataFrame(data)
 
-# Splitting data
+#Splitting data
 X_train, X_test, y_train, y_test = train_test_split(df['text'], df['label'], test_size=0.2, random_state=42)
 
-# Building pipeline for text classification
+#Building pipeline for text classification
 model = Pipeline([
     ('vectorizer', CountVectorizer()),
     ('tfidf', TfidfTransformer()),
     ('classifier', MultinomialNB())
 ])
 
-# Training model
+#Training model
 model.fit(X_train, y_train)
 
-# Predictions
+#Predictions
 y_pred = model.predict(X_test)
 
-# Evaluating model
+#Evaluating model
 accuracy = accuracy_score(y_test, y_pred)
 print("Accuracy:", accuracy)
 print("Classification Report:\n", classification_report(y_test, y_pred))
 
-# Testing on new messages
+#Testing on new messages
 def predict_spam(message):
     return model.predict([message])[0]
 
